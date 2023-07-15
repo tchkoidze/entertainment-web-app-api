@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import IMovie from "types/movies";
+import { IMovie } from "types";
 
 const { Schema } = mongoose;
 

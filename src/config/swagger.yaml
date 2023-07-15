@@ -7,7 +7,7 @@ info:
 servers:
   - url: https://multi-step-api-da0808a28bdb.herokuapp.com/api
     description: production server
-  - url: http://localhost:3333/api
+  - url: http://localhost:3000/api
     description: local server
 paths:
   /movies:
@@ -23,3 +23,16 @@ paths:
                 type: array
                 items:
                   type: string
+  /login:
+    get:
+      tages:
+        - Logs
+      responses:
+        "200":
+          description: get login password
+          content:
+            application/json:
+              schema:
+                type: arry
+              items:
+                type: string

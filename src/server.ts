@@ -11,6 +11,8 @@ import { swaggerMiddleware } from "middlewares";
 const app = express();
 dotenv.config();
 connectToMongo();
+app.use(cors());
+app.use("/movie", express.static("public"));
 
 app.use(bodyParser.json());
 
@@ -19,4 +21,4 @@ app.use("/", ...swaggerMiddleware);
 
 const server = http.createServer(app);
 
-server.listen(3333);
+server.listen(3000);
