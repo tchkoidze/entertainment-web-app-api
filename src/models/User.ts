@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-import { ILogin } from "types";
+import { IUser } from "types";
 
 const { Schema } = mongoose;
 
-const loginSchema = new Schema<ILogin>({
+const userSchema = new Schema<IUser>({
   email: {
     type: Schema.Types.String,
     required: true,
@@ -13,8 +13,9 @@ const loginSchema = new Schema<ILogin>({
     type: Schema.Types.String,
     required: true,
   },
+  id: { type: Schema.Types.String, required: true },
 });
 
-const Login = mongoose.model("Login", loginSchema);
+const User = mongoose.model("User", userSchema);
 
-export default Login;
+export default User;

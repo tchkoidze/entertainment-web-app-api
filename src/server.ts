@@ -4,8 +4,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectToMongo from "./config/mongo.js";
-import { movieRouter } from "routes";
+import { loginRouter, movieRouter, signUpRouter } from "routes";
 import { swaggerMiddleware } from "middlewares";
+
 //import movieRouter from "./routes/movie-router.js";
 
 const app = express();
@@ -17,6 +18,8 @@ app.use("/movie", express.static("public"));
 app.use(bodyParser.json());
 
 app.use("/api", cors(), movieRouter);
+app.use("/api", loginRouter);
+app.use("/signup", signUpRouter);
 app.use("/", ...swaggerMiddleware);
 
 const server = http.createServer(app);

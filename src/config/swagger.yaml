@@ -36,3 +36,25 @@ paths:
                 type: arry
               items:
                 type: string
+  /signup:
+    post:
+      tages:
+        - SignUp
+      requestBody:
+        description: JWT bearer authorization
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+            example:
+              name: nikanoza
+              password: dardubala
+      responses:
+        "200":
+          description: todo list created
