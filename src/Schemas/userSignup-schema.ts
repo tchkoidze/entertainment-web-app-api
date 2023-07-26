@@ -34,9 +34,9 @@ const userSchema = async (data: IUser) => {
           "password must start with a capital letter and can contain letters, digits, and characters like !, -, _, and .",
         "string.required": "password isrequired",
       }),
-    id: Joi.string().required().messages({
+    id: Joi.string().messages({
       "string.base": "id should be a string",
-      "string.required": "id isrequired",
+      //"string.required": "id is required",
     }),
   });
 };
