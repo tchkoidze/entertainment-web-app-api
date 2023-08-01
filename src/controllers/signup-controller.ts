@@ -1,8 +1,10 @@
 import { userSchema } from "Schemas";
 import express from "express";
 import { User } from "models";
-import { IUser } from "types";
+import { ILogin, IUser } from "types";
 import { v4 as uuidv4 } from "uuid";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const signUp = async (req: express.Request, res: express.Response) => {
   console.log("error?");
@@ -29,12 +31,18 @@ const signUp = async (req: express.Request, res: express.Response) => {
   const user = await User.findOne({ email }).select("+password");
   console.log(user, "/?");
   if (!user) {
+    const salt = 10;
+
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    console.log(hashedPassword);
+
     const id = uuidv4();
 
     const newUser: IUser = {
       id: id,
       email: email,
-      password: password,
+      password: hashedPassword,
     };
     await User.create({ ...newUser });
     // Log the created user data
@@ -67,9 +75,14 @@ const getUserLogin = async (req: express.Request, res: express.Response) => {
       return res.status(401).json({ message: "Incorrect email or password." });
     }
 
-    if (body.email === user.email && body.password === user.password) {
+    const isMatch = await bcrypt.compare(body.password, user.password);
+    console.log(isMatch);
+
+    if (body.email === user.email && isMatch) {
       console.log("login successfully");
-      return res.status(200).json({ message: "Login successful." });
+
+      const token = jwt.sign(user.email, process.env.JWT_SECRET || "");
+      return res.status(200).json({ message: "Login successful!", token });
     } else {
       console.log("error");
       return res.status(402).json({ message: "Incorrect email or password." });
