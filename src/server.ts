@@ -24,4 +24,4 @@ app.use("/", ...swaggerMiddleware);
 
 const server = http.createServer(app);
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
