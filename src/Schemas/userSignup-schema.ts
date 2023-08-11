@@ -38,6 +38,7 @@ const userSchema = async (data: IUser) => {
       "string.base": "id should be a string",
       //"string.required": "id is required",
     }),
+    backLink: Joi.string().optional(),
   });
 };
 

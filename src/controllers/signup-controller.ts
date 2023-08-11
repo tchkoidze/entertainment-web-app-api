@@ -5,6 +5,8 @@ import { ILogin, IUser } from "types";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
+import { sendEmailConfirmation } from "mail/edge";
 
 const signUp = async (req: express.Request, res: express.Response) => {
   console.log("error?");
@@ -44,6 +46,10 @@ const signUp = async (req: express.Request, res: express.Response) => {
       email: email,
       password: hashedPassword,
     };
+
+    const verificationHash = crypto.randomBytes(48).toString("hex");
+    await sendEmailConfirmation(body.email, verificationHash, body.backLink);
+
     await User.create({ ...newUser });
     // Log the created user data
     console.log("New User Created:", newUser);
