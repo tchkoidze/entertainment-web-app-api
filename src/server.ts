@@ -16,10 +16,11 @@ app.use(cors());
 app.use("/movie", express.static("public"));
 
 app.use(bodyParser.json());
-
+console.log(123);
 app.use("/api", cors(), movieRouter);
-app.use("/api", loginRouter);
-app.use("/signup", signUpRouter);
+//app.use("/api", loginRouter);
+app.use("/api", signUpRouter);
+
 app.use("/", ...swaggerMiddleware);
 
 const server = http.createServer(app);

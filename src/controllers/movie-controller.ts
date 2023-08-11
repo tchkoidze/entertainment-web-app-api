@@ -5,6 +5,7 @@ import { Movie } from "models";
 
 const getAllmovies = async (req: express.Request, res: express.Response) => {
   const data = await Movie.find();
+  console.log(545);
   return res.json(data);
 };
 

@@ -24,37 +24,50 @@ paths:
                 items:
                   type: string
   /login:
-    get:
-      tages:
-        - Logs
-      responses:
-        "200":
-          description: get login password
-          content:
-            application/json:
-              schema:
-                type: arry
-              items:
-                type: string
-  /signup:
     post:
-      tages:
+      tags:
         - SignUp
       requestBody:
-        description: JWT bearer authorization
+        description: create user
         required: true
         content:
           application/json:
             schema:
-              type: "object"
+              type: object
               properties:
                 name:
                   type: string
                 password:
+                  type: string
+                id:
                   type: string
             example:
               name: nikanoza
               password: dardubala
       responses:
         "200":
-          description: todo list created
+          description: user is loged
+  /signup:
+    post:
+      tags:
+        - SignUp
+      requestBody:
+        description: create user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+                id:
+                  type: string
+            example:
+              name: nikanoza
+              password: dardubala
+      responses:
+        "200":
+          description: user is created
