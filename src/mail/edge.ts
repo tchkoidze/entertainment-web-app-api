@@ -7,7 +7,7 @@ const send = (to: string, subject: string, html: any) => {
     to,
     subject,
     html,
-    from: "ilia.chkoidze12@outlook.com",
+    from: "ilia.chkoidze12@gmail.com",
   };
 
   return mailTransporter.sendMail(options);

@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectToMongo from "./config/mongo.js";
-import { loginRouter, movieRouter, signUpRouter } from "routes";
+import { movieRouter, signUpRouter } from "routes";
 import { swaggerMiddleware } from "middlewares";
 
 //import movieRouter from "./routes/movie-router.js";
