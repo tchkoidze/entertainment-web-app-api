@@ -50,8 +50,8 @@ paths:
                 id:
                   type: string
             example:
-              name: nikanoza
-              password: dardubala
+              name: nikita
+              password: nikita
       responses:
         "200":
           description: user is loged
@@ -74,8 +74,8 @@ paths:
                 id:
                   type: string
             example:
-              name: nikanoza
-              password: dardubala
+              name: nikita
+              password: nikita
       responses:
         "200":
           description: user is created
