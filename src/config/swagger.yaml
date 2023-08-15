@@ -20,6 +20,8 @@ paths:
     get:
       tags:
         - Movies
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: get all movies info successfully
