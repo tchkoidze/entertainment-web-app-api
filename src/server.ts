@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 console.log(123);
 app.use("/api", cors(), movieRouter);
 //app.use("/api", loginRouter);
-app.use("/api", signUpRouter);
+app.use("/api", cors(), signUpRouter);
 
 app.use("/", ...swaggerMiddleware);
 
