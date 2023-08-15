@@ -67,15 +67,10 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                email:
                   type: string
                 password:
                   type: string
-                id:
-                  type: string
-            example:
-              name: nikita
-              password: nikita
       responses:
         "200":
           description: user is created
