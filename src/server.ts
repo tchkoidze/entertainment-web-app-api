@@ -24,6 +24,4 @@ app.use("/api", cors(), signUpRouter);
 
 app.use("/", ...swaggerMiddleware);
 
-const server = http.createServer(app);
-
-server.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
