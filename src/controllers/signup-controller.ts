@@ -118,7 +118,8 @@ const emailVerification = async (
   if (!user) {
     return res.status(422).json({ message: "email did not find" });
   }
-  await user.updateOne({ verify: true });
+  user.verify = true;
+  await user.save();
   await emailVerification.deleteOne();
   return res.json({ message: "email verified" });
 };
