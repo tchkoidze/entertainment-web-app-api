@@ -45,6 +45,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
       id: id,
       email: email,
       password: hashedPassword,
+      verify: false,
     };
 
     const verificationHash = crypto.randomBytes(48).toString("hex");

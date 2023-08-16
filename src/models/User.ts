@@ -13,6 +13,7 @@ const userSchema = new Schema<IUser>({
     type: Schema.Types.String,
     required: true,
   },
+  verify: { type: Schema.Types.Boolean, required: true },
   id: { type: Schema.Types.String, required: true },
 });
 
