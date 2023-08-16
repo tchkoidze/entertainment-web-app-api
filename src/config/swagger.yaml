@@ -71,6 +71,8 @@ paths:
                   type: string
                 password:
                   type: string
+                verify:
+                  type: boolean
       responses:
         "200":
           description: user is created
