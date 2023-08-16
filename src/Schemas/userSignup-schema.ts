@@ -34,11 +34,7 @@ const userSchema = async (data: IUser) => {
           "password must start with a capital letter and can contain letters, digits, and characters like !, -, _, and .",
         "string.required": "password isrequired",
       }),
-    id: Joi.string().messages({
-      "string.base": "id should be a string",
-      //"string.required": "id is required",
-    }),
-    backLink: Joi.string().optional(),
+    backLink: Joi.string().uri().required(),
   });
 };
 

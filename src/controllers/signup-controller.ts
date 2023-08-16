@@ -27,7 +27,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
   }
   console.log(79);
 
-  const { email, password } = data;
+  const { email, password, backLink } = data;
   //const id = uuidv4();
 
   const user = await User.findOne({ email }).select("+password");
@@ -50,7 +50,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
 
     const verificationHash = crypto.randomBytes(48).toString("hex");
     await Verification.create({ hash: verificationHash, email });
-    await sendEmailConfirmation(body.email, verificationHash, body.backLink);
+    await sendEmailConfirmation(email, verificationHash, backLink);
 
     await User.create({ ...newUser });
     // Log the created user data
