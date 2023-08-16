@@ -76,8 +76,10 @@ const getUserLogin = async (req: express.Request, res: express.Response) => {
   //}
 
   try {
-    const user = await User.findOne({ email: body.email }).select("+password");
-
+    const user = await User.findOne({ email: body.email, verify: true }).select(
+      "+password"
+    );
+    //const user = await User.findOne({ email: body.email }).select("+password");
     if (!user) {
       return res.status(401).json({ message: "Incorrect email or password." });
     }
