@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
+import { IVerification } from "types";
 
 const { Schema } = mongoose;
 
-const verificationSchema = new Schema({
+const verificationSchema = new Schema<IVerification>({
   hash: {
-    type: String,
+    type: Schema.Types.String,
     required: true,
   },
   email: {
-    type: String,
+    type: Schema.Types.String,
     required: true,
-    unique: true,
   },
 });
 

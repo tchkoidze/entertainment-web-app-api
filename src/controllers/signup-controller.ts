@@ -1,7 +1,7 @@
 import { userSchema } from "Schemas";
 import express from "express";
-import { User } from "models";
-import { ILogin, IUser } from "types";
+import { User, Verification } from "models";
+import { IUser } from "types";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -49,6 +49,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
     };
 
     const verificationHash = crypto.randomBytes(48).toString("hex");
+    await Verification.create({ hash: verificationHash, email });
     await sendEmailConfirmation(body.email, verificationHash, body.backLink);
 
     await User.create({ ...newUser });
@@ -69,7 +70,6 @@ const getUserLogin = async (req: express.Request, res: express.Response) => {
 
   //const user = await User.findOne({ email: body.email }).select("+password");
   //console.log(user);
-
   //if (body.email === user?.email && body.password === user?.password) {
   //  console.log("login succesfully");
   //  return res.status(201)
@@ -102,4 +102,25 @@ const getUserLogin = async (req: express.Request, res: express.Response) => {
   }
 };
 
-export default { signUp, getUserLogin };
+const emailVerification = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  const { hash } = req.body;
+
+  const emailVerification = await Verification.findOne({ hash });
+  if (!emailVerification) {
+    return res
+      .status(422)
+      .json({ message: "email you try to verify did not exist" });
+  }
+  const user = await User.findOne({ email: emailVerification.email });
+  if (!user) {
+    return res.status(422).json({ message: "email did not find" });
+  }
+  await user.updateOne({ verify: true });
+  await emailVerification.deleteOne();
+  return res.json({ message: "email verified" });
+};
+
+export default { signUp, getUserLogin, emailVerification };

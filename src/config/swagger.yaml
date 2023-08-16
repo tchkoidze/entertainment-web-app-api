@@ -74,3 +74,20 @@ paths:
       responses:
         "200":
           description: user is created
+  /verification:
+    post:
+      tags:
+        - SignUp
+      requestBody:
+        description: verify email
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                hash:
+                  type: string
+      responses:
+        "200":
+          description: user verify successfully
