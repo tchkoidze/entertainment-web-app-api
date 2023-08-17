@@ -1,6 +1,7 @@
 //import { signUp } from "controllers";
 import { userController } from "controllers";
 import express from "express";
+import multer from "multer";
 
 const signUpRouter = express.Router();
 const { signUp, getUserLogin, emailVerification } = userController;

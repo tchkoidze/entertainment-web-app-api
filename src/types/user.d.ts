@@ -3,6 +3,7 @@ interface IUser {
   password: string;
   id: string;
   backLink?: string;
+  avatar: string;
   verify: boolean;
 }
 

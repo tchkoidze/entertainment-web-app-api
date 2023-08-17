@@ -14,6 +14,7 @@ const userSchema = new Schema<IUser>({
     required: true,
   },
   verify: { type: Schema.Types.Boolean, required: true },
+  avatar: { type: Schema.Types.String, required: true },
   id: { type: Schema.Types.String, required: true },
 });
 
