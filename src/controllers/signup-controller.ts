@@ -11,6 +11,7 @@ import { sendEmailConfirmation } from "mail/edge";
 const signUp = async (req: express.Request, res: express.Response) => {
   console.log("error?");
   const { body } = req;
+  const { file } = req;
   console.log(345);
 
   // Log the incoming request body
@@ -45,6 +46,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
       id: id,
       email: email,
       password: hashedPassword,
+      avatar: file?.originalname || "",
       verify: false,
     };
 
