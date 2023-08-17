@@ -63,7 +63,7 @@ paths:
         description: create user
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
@@ -71,6 +71,9 @@ paths:
                   type: string
                 password:
                   type: string
+                avatar:
+                  type: string
+                  format: binary
       responses:
         "200":
           description: user is created
