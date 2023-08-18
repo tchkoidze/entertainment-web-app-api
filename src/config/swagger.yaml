@@ -74,6 +74,8 @@ paths:
                 avatar:
                   type: string
                   format: binary
+                backlink:
+                  type: string
       responses:
         "200":
           description: user is created
