@@ -13,6 +13,7 @@ dotenv.config();
 connectToMongo();
 app.use(cors());
 app.use("/movie", express.static("public"));
+app.use("/avatar", express.static("public/avatar"));
 
 app.use(bodyParser.json());
 console.log(123);

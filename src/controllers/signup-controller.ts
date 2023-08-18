@@ -58,7 +58,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
     // Log the created user data
     console.log("New User Created:", newUser);
 
-    return res.status(201).json({ newUser });
+    return res.status(201).json({ message: "user created" });
   }
 
   return res
