@@ -93,7 +93,9 @@ const getUserLogin = async (req: express.Request, res: express.Response) => {
       console.log("login successfully");
 
       const token = jwt.sign(user.email, process.env.JWT_SECRET || "");
-      return res.status(200).json({ message: "Login successful!", token });
+      return res
+        .status(200)
+        .json({ message: "Login successful!", token, avatar: user.avatar });
     } else {
       console.log("error");
       return res.status(402).json({ message: "Incorrect email or password." });
