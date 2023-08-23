@@ -74,7 +74,7 @@ paths:
                 avatar:
                   type: string
                   format: binary
-                backlink:
+                backLink:
                   type: string
       responses:
         "200":

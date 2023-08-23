@@ -16,6 +16,7 @@ const signUp = async (req: express.Request, res: express.Response) => {
 
   // Log the incoming request body
   console.log("Request Body:", body);
+  console.log("avatar image", file);
 
   const validator = await userSchema(body);
 
